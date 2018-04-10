@@ -87,8 +87,12 @@ contract HashKeyRaffle is Ownable {
   mapping (uint => Game) games;
 
   // perhaps we can pass some config here (like MAX_DRAW_PERIOD)
-  function HashKeyRaffle() public Ownable() {
-
+  function HashKeyRaffle(uint256 _price, bytes32 _secretKeyHash, uint _drawPeriod, uint _start, uint _end, uint _feePercent, uint _minPlayers)
+    public
+    onlyOwner
+    canCreateGame()
+  {
+    newGame(_price, _secretKeyHash, _drawPeriod, _start, _end, _feePercent, _minPlayers);
   }
 
   /*
